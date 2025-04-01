@@ -185,14 +185,16 @@ public class EgyptianPyramidsAppExample {
     printMenuLine();
   }
   //create search for pharaohs by name
-  private void searchPharaohByID(Integer id) {
-    for (int i = 0; i < pharaohArray.length; i++) {
-      if (pharaohArray[i].id == ID )
-      {
-        System.out.printf("Pharaoh found: ", pharaohArray[i].name + pharaohArray[i].id + pharaohArray[i].begin +
-         pharaohArray[i].end + pharaohArray[i].contribution + pharaohArray[i].hieroglyphic);
-        return;
+  private void searchPharaohByID(int id) {
+      for (int i = 0; i < pharaohArray.length; i++) {
+        if (pharaohArray[i].id == id)
+        {
+          pharaohArray[i].print();
+        }
+        else {
+          System.out.println("Pharaoh not found.");
+          break;
+        }
       }
     }
-  }
 }
