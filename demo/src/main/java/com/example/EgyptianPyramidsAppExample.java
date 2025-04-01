@@ -140,13 +140,17 @@ public class EgyptianPyramidsAppExample {
         case '2':
         System.out.print("Enter the id of the pharaoh: ");
         String input = scan.nextLine();
-         ID = Integer.parseInt(input);
+         toInteger(input);
          searchPharaohByID(ID);
         break;
       case '3':
         listAllPyramids();
         break;
       case '4':
+        System.out.print("Enter the id of the pyramid: ");
+        input = scan.nextLine();
+        toInteger(input);
+       searchPyramidByID(ID);
         break;
       case '5':
         break;
@@ -206,4 +210,24 @@ public class EgyptianPyramidsAppExample {
       printMenuLine();
     }
   }
+  // create specific pyramid information by id and display its contributor's name, gold, and total contribution
+  private void searchPyramidByID(int id) {
+    for (int i = 0; i < pyramidArray.length; i++) {
+      if (pyramidArray[i].id == id) {
+        pyramidArray[i].print();
+      } else {
+        System.out.println("Pyramid not found.");
+        break;
+      }
+    }
+
+}
+//convert string to integer
+  private Integer toInteger(String s) {
+    Integer result = Integer.parseInt(s);
+    ID = result;
+    return result;
+  }
+
+  
 }
