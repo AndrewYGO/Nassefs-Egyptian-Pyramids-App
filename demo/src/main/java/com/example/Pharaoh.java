@@ -1,4 +1,4 @@
-package com.egyptianExample;
+package com.example;
 
 // pharoah class, that corresponds to the information in the json file
 public class Pharaoh {

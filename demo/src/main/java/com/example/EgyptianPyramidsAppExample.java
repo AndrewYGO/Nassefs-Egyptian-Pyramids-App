@@ -1,10 +1,9 @@
-package com.egyptianExample;
+package com.example;
 
 import java.util.*;
 import org.json.simple.*;
 
 public class EgyptianPyramidsAppExample {
-
 
   // I've used two arrays here for O(1) reading of the pharaohs and pyramids.
   // other structures or additional structures can be used
@@ -35,16 +34,14 @@ public class EgyptianPyramidsAppExample {
   // constructor to initialize the app and read commands
   public EgyptianPyramidsAppExample() {
     // read egyptian pharaohs
-    String pharaohFile =
-      "/Users/jerom/Documents/GitHub/class-java/egyptian-pyramids/demo/src/main/java/com/egyptianExample/pharaoh.json";
+    String pharaohFile = "/Users/andre/Documents/GitHub/Nassefs-Egyptian-Pyramids-App/demo/src/main/java/com/example/pharaoh.json";
     JSONArray pharaohJSONArray = JSONFile.readArray(pharaohFile);
 
     // create and intialize the pharaoh array
     initializePharaoh(pharaohJSONArray);
 
     // read pyramids
-    String pyramidFile =
-      "/Users/jerom/Documents/GitHub/class-java/egyptian-pyramids/demo/src/main/java/com/egyptian/pyramid.json";
+    String pyramidFile = "/Users/andre/Documents/GitHub/Nassefs-Egyptian-Pyramids-App/demo/src/main/java/com/example/pharaoh.json";
     JSONArray pyramidJSONArray = JSONFile.readArray(pyramidFile);
 
     // create and initialize the pyramid array
@@ -76,31 +73,31 @@ public class EgyptianPyramidsAppExample {
     }
   }
 
-    // initialize the pyramid array
-    private void initializePyramid(JSONArray pyramidJSONArray) {
-      // create array and hash map
-      pyramidArray = new Pyramid[pyramidJSONArray.size()];
-  
-      // initalize the array
-      for (int i = 0; i < pyramidJSONArray.size(); i++) {
-        // get the object
-        JSONObject o = (JSONObject) pyramidJSONArray.get(i);
-  
-        // parse the json object
-        Integer id = toInteger(o, "id");
-        String name = o.get("name").toString();
-        JSONArray contributorsJSONArray = (JSONArray) o.get("contributors");
-        String[] contributors = new String[contributorsJSONArray.size()];
-        for (int j = 0; j < contributorsJSONArray.size(); j++) {
-          String c = contributorsJSONArray.get(j).toString();
-          contributors[j] = c;
-        }
-  
-        // add a new pyramid to array
-        Pyramid p = new Pyramid(id, name, contributors);
-        pyramidArray[i] = p;
+  // initialize the pyramid array
+  private void initializePyramid(JSONArray pyramidJSONArray) {
+    // create array and hash map
+    pyramidArray = new Pyramid[pyramidJSONArray.size()];
+
+    // initalize the array
+    for (int i = 0; i < pyramidJSONArray.size(); i++) {
+      // get the object
+      JSONObject o = (JSONObject) pyramidJSONArray.get(i);
+
+      // parse the json object
+      Integer id = toInteger(o, "id");
+      String name = o.get("name").toString();
+      JSONArray contributorsJSONArray = (JSONArray) o.get("contributors");
+      String[] contributors = new String[contributorsJSONArray.size()];
+      for (int j = 0; j < contributorsJSONArray.size(); j++) {
+        String c = contributorsJSONArray.get(j).toString();
+        contributors[j] = c;
       }
+
+      // add a new pyramid to array
+      Pyramid p = new Pyramid(id, name, contributors);
+      pyramidArray[i] = p;
     }
+  }
 
   // get a integer from a json object, and parse it
   private Integer toInteger(JSONObject o, String key) {
@@ -156,8 +153,7 @@ public class EgyptianPyramidsAppExample {
 
   private static void printMenuLine() {
     System.out.println(
-      "--------------------------------------------------------------------------"
-    );
+        "--------------------------------------------------------------------------");
   }
 
   // prints the menu
