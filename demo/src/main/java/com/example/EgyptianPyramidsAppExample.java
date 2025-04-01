@@ -144,6 +144,7 @@ public class EgyptianPyramidsAppExample {
          searchPharaohByID(ID);
         break;
       case '3':
+        listAllPyramids();
         break;
       case '4':
         break;
@@ -197,4 +198,12 @@ public class EgyptianPyramidsAppExample {
         }
       }
     }
+   // list all pyramids and details 
+  private void listAllPyramids() {
+    for (int i = 0; i < pyramidArray.length; i++) {
+      printMenuLine();
+      pyramidArray[i].print();
+      printMenuLine();
+    }
+  }
 }
