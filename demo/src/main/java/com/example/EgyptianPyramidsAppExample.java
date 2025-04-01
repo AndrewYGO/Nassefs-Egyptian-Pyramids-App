@@ -9,6 +9,7 @@ public class EgyptianPyramidsAppExample {
   // other structures or additional structures can be used
   protected Pharaoh[] pharaohArray;
   protected Pyramid[] pyramidArray;
+  public static Integer ID = 0;
 
   public static void main(String[] args) {
     // create and start the app
@@ -137,6 +138,10 @@ public class EgyptianPyramidsAppExample {
         printAllPharaoh();
         break;
         case '2':
+        System.out.print("Enter the id of the pharaoh: ");
+        String input = scan.nextLine();
+         ID = Integer.parseInt(input);
+         searchPharaohByID(ID);
         break;
       case '3':
         break;
@@ -178,5 +183,16 @@ public class EgyptianPyramidsAppExample {
     printMenuCommand('5', "Displays a list of requesteed pyramids");
     printMenuCommand('q', "Quit");
     printMenuLine();
+  }
+  //create search for pharaohs by name
+  private void searchPharaohByID(Integer id) {
+    for (int i = 0; i < pharaohArray.length; i++) {
+      if (pharaohArray[i].id == ID )
+      {
+        System.out.printf("Pharaoh found: ", pharaohArray[i].name + pharaohArray[i].id + pharaohArray[i].begin +
+         pharaohArray[i].end + pharaohArray[i].contribution + pharaohArray[i].hieroglyphic);
+        return;
+      }
+    }
   }
 }
