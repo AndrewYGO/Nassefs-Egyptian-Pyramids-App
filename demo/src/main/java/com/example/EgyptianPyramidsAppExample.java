@@ -154,6 +154,9 @@ public class EgyptianPyramidsAppExample {
         input = scan.nextLine();
         toInteger(input);
         searchPyramidByID(ID);
+        addPharaohToHashSet();
+        intersection();
+        PharaohAfterIntersection();
         break;
       case '5':
         break;
@@ -225,7 +228,18 @@ public class EgyptianPyramidsAppExample {
         break;
       }
     }
+  }
 
+  // put pharaoh info in hashset
+  private void addPharaohToHashSet() {
+    for (int i = 0; i < pharaohArray.length; i++) {
+      pharaohHash.add(pharaohArray[i].hieroglyphic);
+    }
+  }
+
+  private void intersection() {
+    pharaohHash.retainAll(pyramidContributors);
+    System.out.println(pharaohHash);
   }
 
   // convert string to integer
@@ -235,4 +249,13 @@ public class EgyptianPyramidsAppExample {
     return ID;
   }
 
+  // Display the pharaohs name
+
+  private void PharaohAfterIntersection() {
+    for (int i = 0; i < pharaohArray.length; i++) {
+      if (pharaohHash.contains(pharaohArray[i].hieroglyphic)) {
+        System.out.println(pharaohArray[i].name + " " + pharaohArray[i].contribution);
+      }
+    }
+  }
 }
