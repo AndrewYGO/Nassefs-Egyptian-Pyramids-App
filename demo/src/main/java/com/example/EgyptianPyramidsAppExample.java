@@ -9,7 +9,9 @@ public class EgyptianPyramidsAppExample {
   // other structures or additional structures can be used
   protected Pharaoh[] pharaohArray;
   protected Pyramid[] pyramidArray;
-  public static Integer ID = 0;
+  HashSet<String> pyramidContributors = new HashSet<String>();
+  HashSet<String> pharaohHash = new HashSet<String>();
+  public static int ID = 0;
 
   public static void main(String[] args) {
     // create and start the app
@@ -137,11 +139,12 @@ public class EgyptianPyramidsAppExample {
       case '1':
         printAllPharaoh();
         break;
-        case '2':
+      case '2':
         System.out.print("Enter the id of the pharaoh: ");
         String input = scan.nextLine();
-         toInteger(input);
-         searchPharaohByID(ID);
+        ID = toInteger(input);
+        searchPharaohByID(ID);
+
         break;
       case '3':
         listAllPyramids();
@@ -150,7 +153,7 @@ public class EgyptianPyramidsAppExample {
         System.out.print("Enter the id of the pyramid: ");
         input = scan.nextLine();
         toInteger(input);
-       searchPyramidByID(ID);
+        searchPyramidByID(ID);
         break;
       case '5':
         break;
@@ -158,7 +161,7 @@ public class EgyptianPyramidsAppExample {
         System.out.println("Thank you for using Nassef's Egyptian Pyramid App!");
         break;
       default:
-        System.out.println("ERROR: Unknown commmand");
+        // System.out.println("ERROR: Unknown commmand");
         success = false;
     }
 
@@ -189,20 +192,21 @@ public class EgyptianPyramidsAppExample {
     printMenuCommand('q', "Quit");
     printMenuLine();
   }
-  //create search for pharaohs by name
-  private void searchPharaohByID(int id) {
-      for (int i = 0; i < pharaohArray.length; i++) {
-        if (pharaohArray[i].id == id)
-        {
-          pharaohArray[i].print();
-        }
-        else {
-          System.out.println("Pharaoh not found.");
-          break;
-        }
+
+  // create search for pharaohs by name
+  private void searchPharaohByID(int ID) {
+
+    for (int i = 0; i < pharaohArray.length; i++) {
+      if (pharaohArray[i].id == ID) {
+        System.out.println("Pharaoh found.");
+        pharaohArray[i].print();
+        break;
+
       }
     }
-   // list all pyramids and details 
+  }
+
+  // list all pyramids and details
   private void listAllPyramids() {
     for (int i = 0; i < pyramidArray.length; i++) {
       printMenuLine();
@@ -210,24 +214,25 @@ public class EgyptianPyramidsAppExample {
       printMenuLine();
     }
   }
-  // create specific pyramid information by id and display its contributor's name, gold, and total contribution
+
+  // create specific pyramid information by id and display its contributor's name,
+  // gold, and total contribution
   private void searchPyramidByID(int id) {
     for (int i = 0; i < pyramidArray.length; i++) {
       if (pyramidArray[i].id == id) {
-        pyramidArray[i].print();
-      } else {
-        System.out.println("Pyramid not found.");
+        pyramidContributors.addAll(Arrays.asList(pyramidArray[i].contributors));
+        System.out.println(pyramidContributors);
         break;
       }
     }
 
-}
-//convert string to integer
-  private Integer toInteger(String s) {
-    Integer result = Integer.parseInt(s);
-    ID = result;
-    return result;
   }
 
-  
+  // convert string to integer
+  private Integer toInteger(String input) {
+    Integer result = Integer.parseInt(input);
+    ID = result;
+    return ID;
+  }
+
 }
