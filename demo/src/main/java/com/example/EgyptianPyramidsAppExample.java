@@ -249,12 +249,15 @@ public class EgyptianPyramidsAppExample {
     return ID;
   }
 
-  // Display the pharaohs name
-
+  // Display the pharaohs name and contribution
   private void PharaohAfterIntersection() {
+    int count = 1;
     for (int i = 0; i < pharaohArray.length; i++) {
       if (pharaohHash.contains(pharaohArray[i].hieroglyphic)) {
-        System.out.println(pharaohArray[i].name + " " + pharaohArray[i].contribution);
+        System.out.println(
+            "Contributor " + count + ": " + pharaohArray[i].name + " " + pharaohArray[i].contribution + " gold coins "
+                + "\n");
+        count++;
       }
     }
   }
