@@ -11,6 +11,7 @@ public class EgyptianPyramidsAppExample {
   protected Pyramid[] pyramidArray;
   HashSet<String> pyramidContributors = new HashSet<String>();
   HashSet<String> pharaohHash = new HashSet<String>();
+  HashSet<String> HashPyramidNameAndID = new HashSet<String>();
   public static int ID = 0;
 
   public static void main(String[] args) {
@@ -157,8 +158,11 @@ public class EgyptianPyramidsAppExample {
         addPharaohToHashSet();
         intersection();
         PharaohAfterIntersection();
+        PyramidNameAndId();
         break;
       case '5':
+        System.out.println(HashPyramidNameAndID);
+
         break;
       case 'q':
         System.out.println("Thank you for using Nassef's Egyptian Pyramid App!");
@@ -194,6 +198,16 @@ public class EgyptianPyramidsAppExample {
     printMenuCommand('5', "Displays a list of requesteed pyramids");
     printMenuCommand('q', "Quit");
     printMenuLine();
+  }
+
+  // search for pyrmaid by name
+  private void searchPyramidByName(int ID) {
+    for (int i = 0; i < pyramidArray.length; i++) {
+      if (pyramidArray[i].id == ID) {
+        System.out.println(pyramidArray[i].name);
+        break;
+      }
+    }
   }
 
   // create search for pharaohs by name
@@ -237,6 +251,8 @@ public class EgyptianPyramidsAppExample {
     }
   }
 
+  // find intersection of pharaohs and pyramids when it comes to contributors and
+  // hieroglyphics
   private void intersection() {
     pharaohHash.retainAll(pyramidContributors);
     System.out.println(pharaohHash);
@@ -249,16 +265,28 @@ public class EgyptianPyramidsAppExample {
     return ID;
   }
 
-  // Display the pharaohs name and contribution
+  // Display the pharaohs name and contribution and Pyramid name and id
   private void PharaohAfterIntersection() {
     int count = 1;
+    System.out.print("id: " + ID + "\n");
+    System.out.print("Pyramid: " + pyramidArray[ID].name + "\n");
     for (int i = 0; i < pharaohArray.length; i++) {
       if (pharaohHash.contains(pharaohArray[i].hieroglyphic)) {
         System.out.println(
-            "Contributor " + count + ": " + pharaohArray[i].name + " " + pharaohArray[i].contribution + " gold coins "
+            "\nContributor " + count + ": " + pharaohArray[i].name + " " + pharaohArray[i].contribution
+                + " gold coins "
                 + "\n");
         count++;
       }
     }
+  }
+
+  // create hashset string for pyramid name and id
+  private void PyramidNameAndId() {
+    String PyramidName = pyramidArray[ID].name;
+    String PyramidID = Integer.toString(ID);
+    String combinedNameAndID = PyramidName + " " + PyramidID;
+    HashPyramidNameAndID.add(combinedNameAndID);
+
   }
 }
