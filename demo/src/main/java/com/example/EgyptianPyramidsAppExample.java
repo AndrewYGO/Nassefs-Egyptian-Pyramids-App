@@ -224,8 +224,20 @@ public class EgyptianPyramidsAppExample {
   // list all pyramids and details
   private void listAllPyramids() {
     for (int i = 0; i < pyramidArray.length; i++) {
+      // Clear collections to avoid accumulation
+      pyramidContributors.clear();
+      pharaohHash.clear();
       printMenuLine();
-      pyramidArray[i].print();
+
+      Pyramid currentPyramid = pyramidArray[i];
+      ID = currentPyramid.id;
+
+      pyramidContributors.addAll(Arrays.asList(currentPyramid.contributors));
+
+      addPharaohToHashSet();
+      intersection();
+      PharaohAfterIntersection();
+
       printMenuLine();
     }
   }
@@ -263,6 +275,7 @@ public class EgyptianPyramidsAppExample {
   // Display the pharaohs name and contribution and Pyramid name and id
   private void PharaohAfterIntersection() {
     int count = 1;
+    int totalGold = 0;
     System.out.print("Pyramid ID: " + ID + "\n");
     System.out.print("Pyramid Name: " + pyramidArray[ID].name + "\n");
     for (int i = 0; i < pharaohArray.length; i++) {
@@ -271,8 +284,10 @@ public class EgyptianPyramidsAppExample {
             "Contributor " + count + ": " + pharaohArray[i].name + " " + pharaohArray[i].contribution
                 + " gold coins ");
         count++;
+        totalGold += pharaohArray[i].contribution;
       }
     }
+    System.out.println("Total Gold: " + totalGold + " gold coins\n");
   }
 
   // create hashset string for pyramid name and id
