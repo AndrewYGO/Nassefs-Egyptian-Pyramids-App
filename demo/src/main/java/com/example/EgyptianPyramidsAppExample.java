@@ -71,7 +71,7 @@ public class EgyptianPyramidsAppExample {
       Integer contribution = toInteger(o, "contribution");
       String hieroglyphic = o.get("hieroglyphic").toString();
 
-      // add a new pharoah to array
+      // add a new pharaoh to array
       Pharaoh p = new Pharaoh(id, name, begin, end, contribution, hieroglyphic);
       pharaohArray[i] = p;
     }
@@ -157,7 +157,10 @@ public class EgyptianPyramidsAppExample {
         multiFunction();
         break;
       case '5':
-        System.out.println(HashPyramidNameAndID);
+        System.out.println("Name and ID of the pyramid: ");
+        for (String element : HashPyramidNameAndID) {
+          System.out.println(element);
+        }
 
         break;
       case 'q':
@@ -187,11 +190,11 @@ public class EgyptianPyramidsAppExample {
     printMenuLine();
     System.out.printf("Command\t\tDescription\n");
     System.out.printf("-------\t\t---------------------------------------\n");
-    printMenuCommand('1', "List all the pharoahs");
+    printMenuCommand('1', "List all the pharaohs");
     printMenuCommand('2', "Displays a specific Egyptian pharaoh");
     printMenuCommand('3', "List all the pyramids");
     printMenuCommand('4', "Displays a specific Egyptian pyramid");
-    printMenuCommand('5', "Displays a list of requesteed pyramids");
+    printMenuCommand('5', "Displays a list of requested pyramids");
     printMenuCommand('q', "Quit");
     printMenuLine();
   }
@@ -211,7 +214,6 @@ public class EgyptianPyramidsAppExample {
 
     for (int i = 0; i < pharaohArray.length; i++) {
       if (pharaohArray[i].id == ID) {
-        System.out.println("Pharaoh found.");
         pharaohArray[i].print();
         break;
 
@@ -228,13 +230,11 @@ public class EgyptianPyramidsAppExample {
     }
   }
 
-  // create specific pyramid information by id and display its contributor's name,
-  // gold, and total contribution
+  // find pryamid by id and add contributors to hashset
   private void searchPyramidByID(int id) {
     for (int i = 0; i < pyramidArray.length; i++) {
       if (pyramidArray[i].id == id) {
         pyramidContributors.addAll(Arrays.asList(pyramidArray[i].contributors));
-        System.out.println(pyramidContributors);
         break;
       }
     }
@@ -251,7 +251,6 @@ public class EgyptianPyramidsAppExample {
   // hieroglyphics
   private void intersection() {
     pharaohHash.retainAll(pyramidContributors);
-    System.out.println(pharaohHash);
   }
 
   // convert string to integer
@@ -264,14 +263,13 @@ public class EgyptianPyramidsAppExample {
   // Display the pharaohs name and contribution and Pyramid name and id
   private void PharaohAfterIntersection() {
     int count = 1;
-    System.out.print("id: " + ID + "\n");
-    System.out.print("Pyramid: " + pyramidArray[ID].name + "\n");
+    System.out.print("Pyramid ID: " + ID + "\n");
+    System.out.print("Pyramid Name: " + pyramidArray[ID].name + "\n");
     for (int i = 0; i < pharaohArray.length; i++) {
       if (pharaohHash.contains(pharaohArray[i].hieroglyphic)) {
         System.out.println(
-            "\nContributor " + count + ": " + pharaohArray[i].name + " " + pharaohArray[i].contribution
-                + " gold coins "
-                + "\n");
+            "Contributor " + count + ": " + pharaohArray[i].name + " " + pharaohArray[i].contribution
+                + " gold coins ");
         count++;
       }
     }
@@ -281,9 +279,8 @@ public class EgyptianPyramidsAppExample {
   private void PyramidNameAndId() {
     String PyramidName = pyramidArray[ID].name;
     String PyramidID = Integer.toString(ID);
-    System.out.println("Pyramid ID: " + PyramidID + "\nPyramid Name: " + PyramidName + "\n");
-    // String combinedNameAndID = PyramidName + " " + PyramidID;
-    // HashPyramidNameAndID.add(combinedNameAndID);
+    String combinedNameAndID = PyramidName + " " + PyramidID;
+    HashPyramidNameAndID.add(combinedNameAndID);
 
   }
 
