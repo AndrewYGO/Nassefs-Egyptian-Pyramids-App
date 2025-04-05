@@ -154,11 +154,7 @@ public class EgyptianPyramidsAppExample {
         System.out.print("Enter the id of the pyramid: ");
         input = scan.nextLine();
         toInteger(input);
-        searchPyramidByID(ID);
-        addPharaohToHashSet();
-        intersection();
-        PharaohAfterIntersection();
-        PyramidNameAndId();
+        multiFunction();
         break;
       case '5':
         System.out.println(HashPyramidNameAndID);
@@ -285,8 +281,19 @@ public class EgyptianPyramidsAppExample {
   private void PyramidNameAndId() {
     String PyramidName = pyramidArray[ID].name;
     String PyramidID = Integer.toString(ID);
-    String combinedNameAndID = PyramidName + " " + PyramidID;
-    HashPyramidNameAndID.add(combinedNameAndID);
+    System.out.println("Pyramid ID: " + PyramidID + "\nPyramid Name: " + PyramidName + "\n");
+    // String combinedNameAndID = PyramidName + " " + PyramidID;
+    // HashPyramidNameAndID.add(combinedNameAndID);
 
+  }
+
+  // create method that will call searchPyramidByID, addPharaohToHashSet,
+  // intersection, PharaohAfterIntersection, and PyramidNameAndId
+  private void multiFunction() {
+    searchPyramidByID(ID);
+    addPharaohToHashSet();
+    intersection();
+    PharaohAfterIntersection();
+    PyramidNameAndId();
   }
 }
